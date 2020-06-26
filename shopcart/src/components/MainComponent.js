@@ -48,7 +48,7 @@ class Main extends Component{
      
     setidentity(username,password){
 
-        this.setState({username:username},()=>{alert(this.state.username) });
+        this.setState({username:username});
         this.setState({password:password});
 
         if(username=='' || password=='')

@@ -5,7 +5,6 @@ import {NavLink} from 'react-router-dom';
 
 
 import {LocalForm ,Control,Errors,actions} from 'react-redux-form';
-
 //form validation
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -144,7 +143,7 @@ class Header extends Component {
 
      
     }
-    
+
     log(values.username,values.password,setidentity,toggleIncorrect,toggleCorrect);
     
         
@@ -154,6 +153,8 @@ class Header extends Component {
   }
   handleSignup(values){
     var r = Math.floor(Math.random() * 100) + 1;
+
+    
 
     this.toggleSignup();
     fetch(`http://localhost:4000/signupcustpriv?cid=${r}&username=${values.username}`)

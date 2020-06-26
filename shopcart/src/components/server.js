@@ -42,6 +42,7 @@ con.query(verify,(err,results)=>{
             var flag=false;
          while(results[i])
          {  
+            
              if(results[i].username==req.body.username && results[i].passwords==req.body.password)
              {
                  console.log('You are loggined successfully '+req.body.username);
