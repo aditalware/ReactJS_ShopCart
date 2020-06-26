@@ -14,12 +14,11 @@ const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 function  Logout(props){
-// alert(props.isloggedin);
-//islogged is true than only logout option
+
     if(props.isloggedin)
-    { 
+    {   
         return(
-            <Button color="primary" onClick={()=>{props.setidentity('','');  }}>
+            <Button color="primary" onClick={()=>{props.setidentity('',''); props.toggleLogout()  }}>
             Logout
             </Button>
 
@@ -67,6 +66,7 @@ class Header extends Component {
        isSignupOpen:false,
        isIncorrect:false,
        isCorrect:false,
+       isLoggedOut:false,
        username:'',
        password:''
         };
@@ -77,7 +77,7 @@ class Header extends Component {
         this.handleSignup=this.handleSignup.bind(this);
         this.toggleIncorrect=this.toggleIncorrect.bind(this);
         this.toggleCorrect=this.toggleCorrect.bind(this);
-        this.restore=this.restore.bind(this);
+        this.toggleLogout=this.toggleLogout.bind(this);
     }
 
     toggleNav()
@@ -102,11 +102,9 @@ class Header extends Component {
   {
     this.setState({isCorrect:!this.state.isCorrect});
   }
-  restore()
+  toggleLogout()
   {
-    this.setState({isIncorrect:false});
-    this.setState({isCorrect:false});
-
+      this.setState({isLoggedOut:!this.state.isLoggedOut});
   }
  
   
@@ -216,7 +214,7 @@ class Header extends Component {
         <NavItem>
         
           <Login isloggedin={this.props.isloggedin} toggleModal={this.toggleModal}/>
-          <Logout isloggedin={this.props.isloggedin} setidentity={this.props.setidentity} restore={this.restore} clearcart={this.props.clearcart}/>
+          <Logout isloggedin={this.props.isloggedin} toggleLogout={this.toggleLogout}  setidentity={this.props.setidentity} />
 
          </NavItem>
    </Nav>
@@ -227,7 +225,7 @@ class Header extends Component {
         </div>
       </Navbar>
 
-      
+
       <Jumbotron>
            <div className="container">
                <div className="row row-header">
@@ -491,11 +489,25 @@ class Header extends Component {
           <Modal isOpen={this.state.isCorrect} toggle={this.toggleCorrect}>
           <ModalHeader>Welcome! </ModalHeader>
           <ModalBody>
-          Successfully Loggin in!
+         
+          <Card>
+          <CardImg src={this.props.itemLogined.image}
+          />
+          </Card>
           </ModalBody>
           <ModalBody>
-           
-
+          </ModalBody>
+          </Modal>
+          
+          <Modal isOpen={this.state.isLoggedOut} toggle={this.toggleLogout}>
+          <ModalHeader>Thankyou for Choosing us! </ModalHeader>
+          <ModalBody>
+          
+          </ModalBody>
+          <Card>
+          <CardImg src={this.props.itemLogout.image}/>
+          </Card>
+          <ModalBody>
           </ModalBody>
           </Modal>
 

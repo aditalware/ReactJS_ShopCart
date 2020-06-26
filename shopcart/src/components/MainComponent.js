@@ -191,6 +191,8 @@ class Main extends Component{
             isloggedin={this.state.isloggedin}
             clearcart={this.clearcart}
             setidentity={this.setidentity}
+            itemLogined={this.state.allitems.filter((item)=>item.id===102)[0]}
+            itemLogout={this.state.allitems.filter((item)=>item.id===103)[0]}
             
             />
             <Switch>
