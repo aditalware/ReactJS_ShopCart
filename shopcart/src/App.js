@@ -1,8 +1,8 @@
 import React from 'react';
 // import logo from './logo.svg';
 import Main from './components/MainComponent';
-// import {BrowserRouter } from 'react-router-dom';
-import { Router } from "react-router";
+import {BrowserRouter } from 'react-router-dom';
+// import { Router } from "react-router";
 import { createBrowserHistory } from 'history';
 
 import './App.css';
@@ -10,11 +10,11 @@ const history = createBrowserHistory();
 
 function App() {
   return (  
-    <Router history={history}>
+    <BrowserRouter history={history}>
       <div className="App">
       <Main />
       </div>
-      </Router>
+      </BrowserRouter>
   );
 }
 

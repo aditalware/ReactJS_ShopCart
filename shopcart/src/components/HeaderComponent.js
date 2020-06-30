@@ -350,7 +350,7 @@ class Header extends Component {
                                  placeholder="Last Name"
                                  className="form-control"
                                  validators={{
-                                     required, minLength: minLength(5), maxLength: maxLength(20)
+                                     required, minLength: minLength(3), maxLength: maxLength(20)
                                  }}
     
                               />
@@ -360,7 +360,7 @@ class Header extends Component {
                               show="touched"
                               messages={{
                                   required: 'Required* ',
-                                  minLength: 'Must be greater than 4 characters ',
+                                  minLength: 'Must be greater than 2 characters ',
                                   maxLength: 'Must be 20 characters or less '
                               }}
                                />

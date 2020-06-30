@@ -32,7 +32,7 @@ class SelectedItem extends Component{
 
   handleSubmit(values)
   {
-    this.setState({netprice:parseInt(values.quantity)* this.props.item.price});
+    this.setState({netprice:(parseInt(values.quantity)* this.props.item.price>0)?parseInt(values.quantity)* this.props.item.price:this.state.netprice});
     this.setState({quantity:parseInt(values.quantity)});
 
   }
@@ -84,7 +84,7 @@ class SelectedItem extends Component{
              <Row className="form-group">
              <Label htmlFor="quantity" md={3}>Quantity</Label>
              <Col md={10}>
-                  <Control.select model=".quantity" name="quantity"
+                  <Control.select model=".quantity" name="quantity" value="1"
                        className="form-control"> 
                        <option>1</option>
                        <option>2</option>
