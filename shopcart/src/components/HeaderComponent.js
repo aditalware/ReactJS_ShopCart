@@ -14,7 +14,7 @@ const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val
 
 function  Logout(props){
 
-    if(props.isloggedin)
+    if(props.isloggedin) 
     {   
         return(
             <Button color="primary" onClick={()=>{props.setidentity('',''); props.toggleLogout()  }}>

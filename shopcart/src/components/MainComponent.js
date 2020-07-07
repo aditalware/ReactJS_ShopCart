@@ -9,17 +9,23 @@ import CategoryDetail from './CategoryDetailComponent';
 import SelectedItem from './SelectedItem';
 import CartComponent from './CartComponent';
 import PaymentComponent from './PaymentComponent';
-import {CLOTHES} from '../data/clothes';
-import {FURNITURE} from '../data/furniture';
-import {GROCERY} from '../data/grocery';
-import {ELECTRONICS} from '../data/electronics';
-import {ALLITEMS} from '../data/allitems';
+// import {CLOTHES} from '../data/clothes';
+// import {FURNITURE} from '../data/furniture';
+// import {GROCERY} from '../data/grocery';
+// import {ELECTRONICS} from '../data/electronics';
+// import {ALLITEMS} from '../data/allitems';
 import {Switch,Route,Redirect,withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-
-
-
-function component (){}
+const mapStateToProps=(state)=>{
+    return{
+        clothes:state.clothes,
+        furniture:state.furniture,
+        grocery:state.grocery,
+        electronics:state.electronics,
+        allitems:state.allitems
+    }
+}
 
 
 class Main extends Component{
@@ -29,11 +35,11 @@ class Main extends Component{
         super(props);
 
         this.state={
-            clothes:CLOTHES,
-            furniture:FURNITURE,
-            grocery:GROCERY,
-            electro:ELECTRONICS,
-            allitems:ALLITEMS,
+            // clothes:CLOTHES,
+            // furniture:FURNITURE,
+            // grocery:GROCERY,
+            // electro:ELECTRONICS,
+            // allitems:ALLITEMS,
             username:'',
             password:'',
             cartitems:[],
@@ -86,10 +92,10 @@ class Main extends Component{
 
         const Homepage=()=>{
             return(
-                <Home  cloth={this.state.clothes.filter((cloth)=>cloth.featured)[0]} 
-                furniture={this.state.furniture.filter((furniture)=>furniture.featured)[0]}
-                grocery={this.state.grocery.filter((grocery)=>grocery.featured)[0]}
-                electronic={this.state.electro.filter((electro)=>electro.featured)[0]}
+                <Home  cloth={this.props.clothes.filter((cloth)=>cloth.featured)[0]} 
+                furniture={this.props.furniture.filter((furniture)=>furniture.featured)[0]}
+                grocery={this.props.grocery.filter((grocery)=>grocery.featured)[0]}
+                electronic={this.props.electronics.filter((electro)=>electro.featured)[0]}
                 />
             );
         }
@@ -103,10 +109,10 @@ class Main extends Component{
         const CategoryPage=()=>{
             return(
                 <Category
-                cloth={this.state.clothes} 
-                furniture={this.state.furniture}
-                grocery={this.state.grocery}
-                electronic={this.state.electro}
+                cloth={this.props.clothes} 
+                furniture={this.props.furniture}
+                grocery={this.props.grocery}
+                electronic={this.props.electronics}
                 />
             );
         }
@@ -114,7 +120,7 @@ class Main extends Component{
         const ClothesPage=()=>{
 
             return(
-                <CategoryDetail item={this.state.clothes} 
+                <CategoryDetail item={this.props.clothes} 
                        category='Clothes and Garments'
                 />
             );
@@ -123,7 +129,7 @@ class Main extends Component{
 
             return(
                 <SelectedItem 
-                item={this.state.allitems.filter((item)=>item.id===parseInt(match.params.itemId,10))[0]} 
+                item={this.props.allitems.filter((item)=>item.id===parseInt(match.params.itemId,10))[0]} 
                  appendcartitems={this.appendcartitems}
                 />
             );
@@ -132,7 +138,7 @@ class Main extends Component{
         const FurniturePage=()=>{
 
             return(
-                <CategoryDetail item={this.state.furniture}
+                <CategoryDetail item={this.props.furniture}
                 category='Furniture'
                 />
             );
@@ -140,7 +146,7 @@ class Main extends Component{
         const GroceryPage=()=>{
 
             return(
-                <CategoryDetail item={this.state.grocery}
+                <CategoryDetail item={this.props.grocery}
                 category='Grocery'
                 />
             );
@@ -148,7 +154,7 @@ class Main extends Component{
         const ElectronicsPage=()=>{
 
             return(
-                <CategoryDetail item={this.state.electro}
+                <CategoryDetail item={this.props.electronics}
                 category='Electronics'
                 />
             );
@@ -168,7 +174,7 @@ class Main extends Component{
             return(
                 <PaymentComponent
                 username={this.state.username}
-                item={this.state.allitems.filter((item)=>item.id===100)[0]} 
+                item={this.props.allitems.filter((item)=>item.id===100)[0]} 
 
                 />
             )
@@ -187,12 +193,12 @@ class Main extends Component{
         return(
             <>
             <Header  
-            item={ this.state.allitems.filter((item)=>item.id===101)[0]} 
+            item={ this.props.allitems.filter((item)=>item.id===101)[0]} 
             isloggedin={this.state.isloggedin}
             clearcart={this.clearcart}
             setidentity={this.setidentity}
-            itemLogined={this.state.allitems.filter((item)=>item.id===102)[0]}
-            itemLogout={this.state.allitems.filter((item)=>item.id===103)[0]}
+            itemLogined={this.props.allitems.filter((item)=>item.id===102)[0]}
+            itemLogout={this.props.allitems.filter((item)=>item.id===103)[0]}
             
             />
             <Switch>
@@ -219,4 +225,4 @@ class Main extends Component{
 
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));

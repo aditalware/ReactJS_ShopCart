@@ -2,19 +2,25 @@ import React from 'react';
 // import logo from './logo.svg';
 import Main from './components/MainComponent';
 import {BrowserRouter } from 'react-router-dom';
-// import { Router } from "react-router";
 import { createBrowserHistory } from 'history';
-
+import {Provider} from 'react-redux';
+import {ConfigureStore} from './redux/configureStore';
 import './App.css';
+
+const store=ConfigureStore();
+
 const history = createBrowserHistory();
 
 function App() {
   return (  
+    <Provider store={store}>
     <BrowserRouter history={history}>
-      <div className="App">
-      <Main />
-      </div>
-      </BrowserRouter>
+    <div className="App">
+    <Main />
+    </div>
+    </BrowserRouter>
+    </Provider>
+    
   );
 }
 
