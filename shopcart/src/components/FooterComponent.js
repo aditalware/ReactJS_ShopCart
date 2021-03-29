@@ -22,13 +22,10 @@ function Footer(props) {
 		              Ujjain ,Madhya Pradesh<br />
 		              456010<br />
                       <i className="fa fa-phone fa-lg"></i>: +6264595529<br />
-                      <i className="fa fa-phone fa-lg"></i>: +9460700327<br />
                       <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:alwareadit@gmail.com">
                       
                          alwareadit@gmail.com</a><br></br>
-                         <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:pksaug2529@gmail.com">
-                      
-                         pksaug2529@gmail.com</a>
+                        
 
                     </address>
                 </div>

@@ -68,23 +68,176 @@ con.query(verify,(err,results)=>{
         }
     
 });
-// if(flag)
-// {
-//     res.send({
-//         success:'true'
-//     });
-
-// }
-// else{
-//     res.send({
-//         success:'false'
-//     });
-// }
-
 
 
 });
+//get cart
 
+app.post('/getcart',(req,res)=>{
+
+const getcartitems=`SELECT username, itemid, itemname, itemquantity, itemnetprice from cart where username='${req.body.username}'`;
+con.query(getcartitems,(err,results)=>{
+
+    if(err){
+        console.log('someerror occured'+err);
+    }
+        else{
+            console.log('Loading cart');
+           var i=0;
+           var cartitems=[];
+           while(results[i])
+           {
+            cartitems=cartitems.concat({
+                id:results[i].itemid,
+                name:results[i].itemname,
+                quantity:results[i].itemquantity,
+                netprice:results[i].itemnetprice
+            });
+            i++;
+           }
+           res.send({
+               
+               cart:cartitems
+           });
+
+        }
+
+        
+    
+});
+
+});
+//addtocart
+app.post('/addtocart',(req,res)=>{
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+const addcartitems=`INSERT INTO  cart (username, itemid, itemname, itemquantity, itemnetprice, adddate, addtime) VALUES ('${req.body.username}',${req.body.itemid},'${req.body.itemname}',${req.body.itemquantity},${req.body.itemnetprice},'${date}','${time}')`;
+con.query(addcartitems,(err,results)=>{
+
+    if(err){
+        console.log('someerror occured'+err);
+    }
+        else{
+            console.log('Items added');
+           
+
+        }
+
+        
+    
+});
+
+
+const getcartitems=`SELECT username, itemid, itemname, itemquantity, itemnetprice from cart where username='${req.body.username}'`;
+con.query(getcartitems,(err,results)=>{
+
+    if(err){
+        console.log('someerror occured');
+    }
+        else{
+            console.log('Getitems');
+           var i=0;
+           var cartitems=[];
+           while(results[i])
+           {
+            cartitems=cartitems.concat({
+                id:results[i].itemid,
+                name:results[i].itemname,
+                quantity:results[i].itemquantity,
+                netprice:results[i].itemnetprice
+            });
+            i++;
+           }
+           res.send({
+               cart:cartitems
+           });
+
+        }
+
+        
+    
+});
+
+});
+
+//deletefromcart
+app.post('/deletefromcart',(req,res)=>{
+    console.log(req);
+    const deletecartitems=`DELETE from cart where username='${req.body.username}' and itemid=${req.body.itemid}`;
+
+    con.query(deletecartitems,(err,results)=>{
+    
+        if(err){
+            console.log('someerror occured'+err);
+        }
+            else{
+                console.log('deleted cart item with id '+req.body.itemid);
+            }
+    
+            
+        
+    });
+
+    const getcartitems=`SELECT username, itemid, itemname, itemquantity, itemnetprice from cart where username='${req.body.username}'`;
+    con.query(getcartitems,(err,results)=>{
+
+    if(err){
+        console.log('someerror occured'+err);
+    }
+        else{
+            console.log('Loading cart');
+           var i=0;
+           var cartitems=[];
+           while(results[i])
+           {
+            cartitems=cartitems.concat({
+                id:results[i].itemid,
+                name:results[i].itemname,
+                quantity:results[i].itemquantity,
+                netprice:results[i].itemnetprice
+            });
+            i++;
+           }
+           res.send({
+               
+               cart:cartitems
+           });
+
+        }
+
+        
+    
+});
+    
+    });
+
+    //clearcart
+app.post('/clearcart',(req,res)=>{
+    console.log(req);
+    const deletecartitems=`DELETE from cart where username='${req.body.username}' `;
+
+    con.query(deletecartitems,(err,results)=>{
+    
+        if(err){
+            console.log('someerror occured'+err);
+        }
+            else{
+                console.log('cleared cart');
+                res.send({
+                    cart:[]
+                });
+            }
+    
+            
+        
+    });
+
+});
+    
+  
 app.get('/signupcustomer',(req,res)=>{
 
     const{cid,cfirstname,clastname,cDob,cEmail} =req.query;

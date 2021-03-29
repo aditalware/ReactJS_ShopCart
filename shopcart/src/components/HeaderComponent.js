@@ -27,10 +27,8 @@ function  Logout(props){
             <div></div>
         );
     }
-  
-    
-  
-    }
+}
+
     function  Login(props){
         // alert(props.isloggedin);
         //islogged is false than only login option
@@ -171,13 +169,12 @@ class Header extends Component {
     return(
     <>
       <Navbar dark expand="md">
-        <div className="container">
+        <div className="container navbar-space">
 
         <NavbarToggler onClick={this.toggleNav}/>
 
         <NavbarBrand href="/">Universal Shopping Center</NavbarBrand>
 
-            
       <Collapse isOpen={this.state.isNavOpen} navbar>
       <Nav navbar>
       <NavItem>
@@ -211,12 +208,10 @@ class Header extends Component {
           </NavLink>
       </NavItem>
    </Nav>
-   <Nav className="ml-auto" navbar>
+   <Nav  navbar className="login">
         <NavItem>
-        
           <Login isloggedin={this.props.isloggedin} toggleModal={this.toggleModal}/>
           <Logout isloggedin={this.props.isloggedin} toggleLogout={this.toggleLogout}  setidentity={this.props.setidentity} />
-
          </NavItem>
    </Nav>
    
@@ -227,22 +222,7 @@ class Header extends Component {
       </Navbar>
 
 
-      <Jumbotron>
-           <div className="container">
-               <div className="row row-header">
-                   <div className="col-12 col-sm-6">
-                       <h1>Universal Shopping Center</h1>
-                       <h3 >Welcome to the magnificient world of shopping! Unlimated products and nasty quality!</h3>
-                   </div>
-                   <div className="col-12 col-sm-6">
-                       <Card >
-                       <CardImg src={this.props.item.image} alt={this.props.item.name}>
-                       </CardImg>
-                       </Card>
-                   </div>
-               </div>
-           </div>
-       </Jumbotron>
+      
 
        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                 <ModalHeader>LogIn</ModalHeader>

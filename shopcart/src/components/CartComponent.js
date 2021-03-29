@@ -4,6 +4,7 @@ import { Card, CardImg, CardText, CardBody,
     import {Link,useHistory} from 'react-router-dom';
    
     import {} from 'react-animation-components';
+    import SideButtons from './SideButtons';
 
 
 
@@ -62,7 +63,7 @@ function Cart(props){
            
         return(
             <RenderRow item={item} deletecartitem={props.deletecartitem} />
- 
+            
         );
    
    
@@ -83,18 +84,16 @@ function Cart(props){
         <div>
         <div className="container">
         <div className="row ">
-        <Breadcrumb>
-        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-        <BreadcrumbItem active>MyCart</BreadcrumbItem>
-    </Breadcrumb>
-          <div className="col-12 ">
+       <SideButtons/>
+       
+          <div className="col-12 " className="shopcart">
           <h1>  Welcome To your own Shopping Cart {props.username} </h1>
           <br></br>
           </div>
         
         </div>
-        <div className="row align-items-start">
-             
+        <div className="row align-items-start" style={{height:"500px",border:"15px solid",borderColor:"#EAEAEA"}}>
+            
         <Table striped>
         <thead>
           <tr>
@@ -105,76 +104,29 @@ function Cart(props){
             <th>Delete</th>
           </tr>
         </thead>
-        {category}
-       
-        <tr>
-          
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <tbody>
 
+        {category}
+        </tbody>
        
-      <tr>
-          
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-          
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-          
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
-<tr>
-          
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-          
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
+       
           </Table>
          
-            
+          
         </div>
         <div className="row">
-        <Link to={'/categories'}>
-        <Button  onClick={()=>props.clearcart()} color="warning">
-        <span className="fa fa-lg fa-remove"></span>
-        Clear Cart
-         </Button>
-        </Link>
+                <Link to={'/categories'}>
+            <Button  onClick={()=>props.clearcart()} className="clearcartbtn">
+            <span className="fa fa-lg fa-remove"></span>
+              Clear Cart
+            </Button>
+            </Link>
+            
         
         
-        <div className="col-5">
-        <Card>
-        <CardBody>
-        <CardText>  
-                The total price:{sum(props.cartitems)} Rs/-
-        </CardText>
-        </CardBody>
-        </Card>
-        </div>
+       
         
-        <Button  onClick={()=>
+        <Button className="paynowbtn" onClick={()=>
           {
              if(props.username=='')
            {
@@ -199,6 +151,10 @@ function Cart(props){
         <span className="fa fa-lg fa-credit-card"></span>
         PayNow
          </Button>
+
+         <div className="totalamt" >
+            <strong> The total price: </strong> {sum(props.cartitems)} Rs/-
+          </div>
         
         
         </div>

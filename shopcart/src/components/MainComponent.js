@@ -9,11 +9,6 @@ import CategoryDetail from './CategoryDetailComponent';
 import SelectedItem from './SelectedItem';
 import CartComponent from './CartComponent';
 import PaymentComponent from './PaymentComponent';
-// import {CLOTHES} from '../data/clothes';
-// import {FURNITURE} from '../data/furniture';
-// import {GROCERY} from '../data/grocery';
-// import {ELECTRONICS} from '../data/electronics';
-// import {ALLITEMS} from '../data/allitems';
 import {Switch,Route,Redirect,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -47,11 +42,28 @@ class Main extends Component{
 
         };
         this.setidentity=this.setidentity.bind(this);
+        this.setupcart=this.setupcart.bind(this);
         this.appendcartitems=this.appendcartitems.bind(this);
         this.clearcart=this.clearcart.bind(this);
         this.deletecartitem=this.deletecartitem.bind(this);
     }
      
+    
+    setupcart(cart){
+
+        
+        if(this.state.username!='')
+        {
+        this.setState({cartitems: cart});
+        }
+        else{
+            var newcart=[];
+            this.setState({cartitems: newcart });
+        }
+        
+    
+    }
+
     setidentity(username,password){
 
         this.setState({username:username});
@@ -60,42 +72,128 @@ class Main extends Component{
         if(username=='' || password=='')
         {
             this.setState({isloggedin:false});
-            this.clearcart();
         }
         else{
             this.setState({isloggedin:true});
         }
+        const setupcart=this.setupcart;
+
+        async function getcart(username)
+        {
+          let response = await fetch(`http://localhost:4000/getcart`,{
+            method:'POST',
+            mode:'cors',
+            headers:{
+              'Accept':'application/json',
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+              username:username,
+          
+            })
+          });
+
+          let data = await response.json();
+       
+          setupcart(data.cart);
+        }
+
+       getcart(this.state.username,setupcart);
+        
+       
         
     }
    
 
     appendcartitems(item){
+        const setupcart=this.setupcart;
 
-        this.setState({cartitems: this.state.cartitems.concat(item)});
+        async function updatecart(username,item,setupcart)
+        {
+          let response = await fetch(`http://localhost:4000/addtocart`,{
+            method:'POST',
+            mode:'cors',
+            headers:{
+              'Accept':'application/json',
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+              username:username,
+              itemid:item.id,
+              itemname:item.name,
+              itemquantity:item.quantity,
+              itemnetprice:item.netprice
+            })
+          });
+
+          let data = await response.json();
+          setupcart(data.cart);
+         
+        }
+        updatecart(this.state.username,item,setupcart)
+
+        
     }
     deletecartitem(item){
-      var myArray=[];
-     
-     
-      myArray = this.state.cartitems.filter(function( obj ) {
-        return obj.id !== item.id;
-    });
-     
-      this.setState({cartitems:myArray});
-         
+
+        const setupcart=this.setupcart;
+      async function updatecart(username,item,setupcart)
+      {  
+        let response = await fetch(`http://localhost:4000/deletefromcart`,{
+          method:'POST',
+          mode:'cors',
+          headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            username:username,
+            itemid:item.id
+          })
+        });
+        
+        let data = await response.json();
+
+        setupcart(data.cart);
+       
+      }
+      updatecart(this.state.username,item,setupcart);
+
     }
 
     clearcart(){
-        this.setState({cartitems:[]});
+        
+        const setupcart=this.setupcart;
+      async function updatecart(username,setupcart)
+      {  
+        let response = await fetch(`http://localhost:4000/clearcart`,{
+          method:'POST',
+          mode:'cors',
+          headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            username:username,
+          })
+        });
+        
+        let data = await response.json();
+
+        setupcart(data.cart);
+       
+      }
+      updatecart(this.state.username,setupcart);
     }
     render(){
 
         const Homepage=()=>{
             return(
-                <Home  cloth={this.props.clothes.filter((cloth)=>cloth.featured)[0]} 
-                furniture={this.props.furniture.filter((furniture)=>furniture.featured)[0]}
-                grocery={this.props.grocery.filter((grocery)=>grocery.featured)[0]}
-                electronic={this.props.electronics.filter((electro)=>electro.featured)[0]}
+                <Home 
+                 cloth={this.props.clothes.filter((cloth)=>cloth.featured)} 
+                furniture={this.props.furniture.filter((furniture)=>furniture.featured)}
+                grocery={this.props.grocery.filter((grocery)=>grocery.featured)}
+                electronic={this.props.electronics.filter((electro)=>electro.featured)}
                 />
             );
         }
@@ -129,6 +227,7 @@ class Main extends Component{
 
             return(
                 <SelectedItem 
+                username={this.username}
                 item={this.props.allitems.filter((item)=>item.id===parseInt(match.params.itemId,10))[0]} 
                  appendcartitems={this.appendcartitems}
                 />
@@ -199,7 +298,6 @@ class Main extends Component{
             setidentity={this.setidentity}
             itemLogined={this.props.allitems.filter((item)=>item.id===102)[0]}
             itemLogout={this.props.allitems.filter((item)=>item.id===103)[0]}
-            
             />
             <Switch>
             
@@ -213,7 +311,7 @@ class Main extends Component{
             <Route path='/payment' component={Pay} />
             <Route exact path='/categories/:itemId' component={SelectedItems} />
             <Route exact path="/contactus" component={ContactPage}/>  
-           <Route exact path="/aboutus" component={AboutPage}/>
+            <Route exact path="/aboutus" component={AboutPage}/>
             <Redirect to="/home"/>
             </Switch>
             

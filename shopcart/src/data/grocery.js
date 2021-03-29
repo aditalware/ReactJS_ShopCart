@@ -8,7 +8,11 @@ export const GROCERY =
         label:'Grocery',
         price:150,
         featured: true,
+        rating:5,
+
         chosen:false,
+        rating:5,
+
         description:'Fresh Oranges in every sip!'                    
         },
         {
@@ -18,7 +22,9 @@ export const GROCERY =
         category: 'Grocery',
         label:'Tangy',
         price:43,
-        featured: false,
+        featured: true,
+        rating:5,
+
         chosen:false,
         description:'Pulpy Tomatoes with wisk'
         },
@@ -29,6 +35,8 @@ export const GROCERY =
         category: 'Grocery',
         label:'fresh',
         price:30,
+        rating:5,
+
         featured: false,
         chosen:false,
         description:'Protein and vitamins integrated!'
@@ -39,6 +47,7 @@ export const GROCERY =
         image: '/assests/images/aata.jpg',
         category: 'Grocery',
         label:'new',
+        rating:5,
         price:444,
         featured: false,
         chosen:true,
