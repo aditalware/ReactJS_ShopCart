@@ -7,28 +7,25 @@ function Footer(props) {
         <div className="container">
             <div className="row justify-content-center">             
                 <div className="col-4 offset-1 col-sm-2">
-                    <h5 white>Quick Directs:</h5>
+                    <h5 style={{color:"white"}}>Quick Directs:</h5>
                     <ul className="list-unstyled">
-                        <li><Link to={'/home'}>Home</Link></li>
-                        <li><Link to={'/aboutus'}>About</Link></li>
-                        <li><Link to={'/categories'}>Categories</Link></li>
-                        <li><Link to={'/contactus'}>Contact us</Link></li>
+                        <li><Link to={'/home'} style={{color:"white"}}>Home</Link></li>
+                        <li><Link to={'/aboutus'} style={{color:"white"}}>About</Link></li>
+                        <li><Link to={'/categories'} style={{color:"white"}}>Categories</Link></li>
+                        <li><Link to={'/contactus'} style={{color:"white"}}>Contact us</Link></li>
                     </ul>
                 </div>
                 <div className="col-7 col-sm-5">
-                    <h5>Our Address</h5>
+                    <h5 style={{color:"white"}}>Our Address</h5>
                     <address>
 		              107,Vidhya Nagar<br />
 		              Ujjain ,Madhya Pradesh<br />
 		              456010<br />
                       <i className="fa fa-phone fa-lg"></i>: +6264595529<br />
-                      <i className="fa fa-phone fa-lg"></i>: +9460700327<br />
-                      <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:alwareadit@gmail.com">
+                      <i className="fa fa-envelope fa-lg" style={{color:"white"}}></i>: <a href="mailto:alwareadit@gmail.com" style={{color:"white"}}>
                       
                          alwareadit@gmail.com</a><br></br>
-                         <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:pksaug2529@gmail.com">
-                      
-                         pksaug2529@gmail.com</a>
+                        
 
                     </address>
                 </div>
@@ -45,7 +42,7 @@ function Footer(props) {
             </div>
             <div className="row justify-content-center">             
                 <div className="col-auto">
-                    <p>© Copyright 2020 Universal Shopping Center</p>
+                    <p style={{color:"white"}}>© Copyright 2020 Universal Shopping Center</p>
                 </div>
             </div>
         </div>

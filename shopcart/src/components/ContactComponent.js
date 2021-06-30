@@ -32,12 +32,9 @@ class Contact extends Component{
     render()
    { 
        return(
-           <div className="container">
-           <Breadcrumb>
-                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>Contact us</BreadcrumbItem>
-            </Breadcrumb>
-           <h3> Please Give us your valuable Feedback! {this.props.username}</h3>
+           <div className="container contact" style={{marginTop:"100px",marginBottom:"200px"}}>
+         
+           <h3 className="shopcart" style={{padding:"20px"}} > Please Give us your valuable Feedback! {this.props.username}</h3>
            <LocalForm onSubmit={(values)=>this.handleSubmit(values)}>
          
            <Row className="form-group">

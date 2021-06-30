@@ -3,7 +3,26 @@ import { Card, CardImg, CardText, CardBody,
     CardHeader,Badge,Row,Label,Col,Button, CardFooter,Breadcrumb,BreadcrumbItem} from 'reactstrap';
     import {LocalForm ,Control} from 'react-redux-form';
     import {Link} from 'react-router-dom';
-   
+    import ButtonGroup from 'react-bootstrap/ButtonGroup'
+    import StarRatingComponent from 'react-star-rating-component';
+    import {FadeTransform} from 'react-animation-components';
+    import SideButtons from './SideButtons';
+
+
+    function Renderoffers({item}){
+
+        return(
+            <FadeTransform in
+            transformProps={{exitTransform:'scale(0.5) translateY(-50%)'}}>
+            <Card>
+            <Link to={`/categories/${item.id}`}>
+            <CardImg src={item.image} alt={item.name} height="300" width="100" />
+            </Link>
+            </Card>
+            </FadeTransform>
+            
+        );
+    }
 function RenderItem({item})
      {
          return(
@@ -12,6 +31,9 @@ function RenderItem({item})
             <CardBody>
             
             </CardBody>
+            <CardFooter style={{textAlign:"center",fontWeight:"700",fontSize:"20px"}} >
+                {item.name}
+            </CardFooter>
             </Card>
          );
      }
@@ -32,8 +54,8 @@ class SelectedItem extends Component{
 
   handleSubmit(values)
   {
-    this.setState({netprice:(parseInt(values.quantity)* this.props.item.price>0)?parseInt(values.quantity)* this.props.item.price:this.state.netprice});
-    this.setState({quantity:parseInt(values.quantity)});
+    this.setState({netprice:(parseInt(values)* this.props.item.price>0)?parseInt(values)* this.props.item.price:this.state.netprice});
+    this.setState({quantity:parseInt(values)});
 
   }
 
@@ -51,15 +73,36 @@ class SelectedItem extends Component{
     render(){
         return(
             <>
-            <div className="container">
-            <Breadcrumb>
-         <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-         <BreadcrumbItem><Link to="/categories">Categories</Link></BreadcrumbItem>
-         <BreadcrumbItem active>{this.props.item.name}</BreadcrumbItem>
-         </Breadcrumb>
-         <div className="row">
+             <SideButtons/>
+
+             <div className="col-1 hotdeals" >
+                    <div className="col-12 d-sm-none d-md-none d-lg-block as " >
+                        <Renderoffers item={{image:"/assests/images/hotdeals.jpg",name:"hotdeals"}}  
+                        />
+                    </div>
+                    <div className="col-12  d-sm-none d-md-none d-lg-block as">
+                        <Renderoffers item={{image:"/assests/images/fifty.jpg",name:"fifty"}} 
+                        />
+                    </div>
+                    <div className="col-12 d-sm-none d-md-none d-lg-block as">
+                        <Renderoffers item={{image:"/assests/images/thirty.jpg",name:"thirty"}} 
+                        />
+                    </div>
+                    <div className="col-12 d-sm-none d-md-none d-lg-block as">
+                    <Renderoffers item={{image:"/assests/images/ten.jpg",name:"ten"}} 
+                    />
+                </div>
+                <div className="col-12 d-sm-none d-md-none d-lg-block as">
+                    <Renderoffers item={{image:"/assests/images/special.jfif",name:"special"}} 
+                    />
+                </div>
+                
+             </div>
+            <div className="container" style={{marginTop:"100px",marginBottom:"200px"}}>
+        
+         <div className="row selecteditem" >
          
-             <div className="col-12 col-md-5 m-1">
+             <div className="col-12 col-md-5 m-1 asdf">
                  < RenderItem item={this.props.item}/>
              </div >
              <div className="col-12 offset-md-1 col-md-6 m-1">
@@ -67,86 +110,119 @@ class SelectedItem extends Component{
 
              
              <div>
-             <Card key={this.props.item.id}>
-             <CardHeader>{this.props.item.name}</CardHeader>
+             <Card key={this.props.item.id} style={{height:"546px"}}>
              <CardBody>
-             <CardText>
-             <h4>
+             <CardText >
+                 <div className="row">
+
+
+
+             <h4 className="col-6">
              <Badge color="success">In Stock</Badge>
-             <br></br> 
-             <Badge color="primary">Rs.{this.props.item.price}/-</Badge> 
-             </h4>
-             <small style={{ color:"red" }}>* All the prices are valid per pack/entity.</small>
-             <br></br>
-              <br></br>
-             <LocalForm onSubmit={(values)=>this.handleSubmit(values)}>
-         
-             <Row className="form-group">
-             <Label htmlFor="quantity" md={3}>Quantity</Label>
-             <Col md={10}>
-                  <Control.select model=".quantity" name="quantity" value="1"
-                       className="form-control"> 
-                       <option>1</option>
-                       <option>2</option>
-                       <option>3</option>
-                       <option>4</option>
-                       <option>5</option>
-                   </Control.select>
-             </Col >
-             </Row>
-             <Row>
-             <div className="col-12 ">
-             <small style={{color:"red"}}>Click the button below to get the cost of the item!</small>
-             </div>
-
-             </Row>
-              
-             <Row className="form-group">
-              <Col  md={4}>
-             
-             <Button type="submit" color="success">
-                 Amount Payable 
-             </Button>
-
-             </Col>
-             <Col md={4}>
              <div>
-             <strong style={{color:"blue"}}>  Rs {this.state.netprice} /-
-             </strong>
+
+             <label  className="pricemoney">MRP:  </label>
+             <Badge color="danger"  className="pricemoney"><i className="fa fa-inr"></i> {this.props.item.price+25}/-</Badge> 
+
              </div>
-             </Col>
-             </Row>
-             
-             <Row className="form-group">
-              <Col >
-             <Button  onClick={()=>this.addcart()} color="warning">
-            Add to Cart
+
+             <div>
+
+             <label  className="pricemoney">Deal Price:  </label>
+             <Badge color="primary"  className="pricemoney"><i className="fa fa-inr"></i> {this.props.item.price}/-</Badge> 
+       
+             </div>
+
+             <div>
+             <label  className="pricemoney">You Save :  </label>
+             <Badge color="success" className="pricemoney">{String((25/(this.props.item.price+25))*100).substr(0,4)} <i className="fa fa-percent"></i> </Badge> 
+
+             </div>
+             </h4>
+
+
+
+
+             <h4 className="col-6">
+                 <div style={{marginBottom:"30px",marginTop:"20px"}}>
+
+                    <label  className="pricemoney"  style={{width:"80px"}}>Quantity</label>
+                    <select onChange={(e)=>{this.handleSubmit(e.target.value)}} >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                 </div>
+
+                 <div>
+
+                        <label  className="pricemoney" style={{width:"150px"}}>Net Amount: </label>
+                        <span  > <i className="fa fa-inr"></i> {this.state.netprice}</span>
+                 </div>
+             </h4>
+                 </div>
+             <small style={{ color:"red" }}>* All the prices are valid per pack/entity.</small>
+            
+
+            <div className="star">
+                <label>Overall Rating: {this.props.item.rating}/7 </label>
+                <StarRatingComponent 
+                    name={this.props.item.name}
+                    starCount={7}
+                    value={this.props.item.rating}
+                    editing={false}
+                    style={{fontSize:"20px"}}
+                    />
+
+            </div>
+
+            <div>
+                    <strong>
+                       FREE delivery: {String(new Date()).split(' ')[0]}day , {String(new Date()).split(' ')[1]}  {(parseInt(String(new Date()).split(' ')[2])+1)%31} 
+                    </strong>
+                    <br></br>
+                    <strong>
+                    Fastest delivery: {String(new Date()).split(' ')[0]}day , {String(new Date()).split(' ')[1]}  {(parseInt(String(new Date()).split(' ')[2]))%31}
+                    </strong>
+                    <br></br>
+                    Order within <strong>12 hrs</strong> and <strong>23 mins </strong>
+            </div>
+            <div style={{display:"inline-flex",marginTop:"20px"}}>
+                        <div className="icons" style={{backgroundColor:"#1400e07d"}}>
+
+                    <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                        </div>
+                        <div className="icons" style={{backgroundColor:"#fba200f0"}}>
+
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                        </div>
+                        <div className="icons" style={{backgroundColor:"#008000a3"}}>
+
+                    <i class="fa fa-leaf" aria-hidden="true" ></i>
+                        </div>
+                        <div className="icons" style={{backgroundColor:"#ff2a00a8"}}>
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+
+                        </div>
+
+
+            </div>
+
+         
+            <Button   onClick={()=>this.addcart()} className="addcart">
+              Add to Cart
              </Button>
-             </Col>
-             </Row>
-             
-             
-             </LocalForm>
-         
-         
-             <blockquote>
-             " {this.props.item.description} "
-             
-             </blockquote>
-             <br></br>
+
+             <div>
+             {this.props.item.description} 
+             </div>
          
              </CardText>
              </CardBody>
 
-             <CardFooter  >
-             <div  >
-             <Button color="success">
-             {this.state.message}
-
-             </Button>
-
-             </div>
-             </CardFooter>
+            
              </Card>
              
              

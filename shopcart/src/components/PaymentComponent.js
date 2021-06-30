@@ -16,17 +16,16 @@ class Payement extends Component
    
     render(){
         return(
-            <div className="container">
-            <Breadcrumb>
-            <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-            <BreadcrumbItem active>Payment gateway</BreadcrumbItem>
-        </Breadcrumb>
+            <div className="container payment">
+         
             
             <FadeTransform in
             transformProps={{exitTransform:'scale(0.5) translateY(-50%)'}}>
             <Card>
-            <CardTitle></CardTitle>
+                <div className="pay">
+
             <CardImg src={this.props.item.image} alt={this.props.item.name}></CardImg>
+                </div>
             <CardBody>
             <CardText>
             <div className="col-12 d-flex justify-content-center ">

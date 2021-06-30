@@ -9,13 +9,9 @@ import CategoryDetail from './CategoryDetailComponent';
 import SelectedItem from './SelectedItem';
 import CartComponent from './CartComponent';
 import PaymentComponent from './PaymentComponent';
-// import {CLOTHES} from '../data/clothes';
-// import {FURNITURE} from '../data/furniture';
-// import {GROCERY} from '../data/grocery';
-// import {ELECTRONICS} from '../data/electronics';
-// import {ALLITEMS} from '../data/allitems';
 import {Switch,Route,Redirect,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
 
 const mapStateToProps=(state)=>{
     return{
@@ -47,11 +43,28 @@ class Main extends Component{
 
         };
         this.setidentity=this.setidentity.bind(this);
+        this.setupcart=this.setupcart.bind(this);
         this.appendcartitems=this.appendcartitems.bind(this);
         this.clearcart=this.clearcart.bind(this);
         this.deletecartitem=this.deletecartitem.bind(this);
     }
      
+    
+    setupcart(cart){
+
+        
+        if(this.state.username!='')
+        {
+        this.setState({cartitems: cart});
+        }
+        else{
+            var newcart=[];
+            this.setState({cartitems: newcart });
+        }
+        
+    
+    }
+
     setidentity(username,password){
 
         this.setState({username:username});
@@ -60,42 +73,79 @@ class Main extends Component{
         if(username=='' || password=='')
         {
             this.setState({isloggedin:false});
-            this.clearcart();
         }
         else{
             this.setState({isloggedin:true});
         }
+        const setupcart=this.setupcart;
+
+        axios.get('https://backend-ecommerce-adit.herokuapp.com/api/getfromcart?username='+this.state.username).then((data)=>{
+          console.log(data);
+          setupcart(data.data);
+        })
+        .catch((err)=>console.log(err));
+       
         
     }
    
 
     appendcartitems(item){
+        const setupcart=this.setupcart;
+        const items={
+              username:this.state.username,
+              itemId:item.id,
+              itemName:item.name,
+              itemQuantity:item.quantity,
+              itemNetPrice:item.netprice
+        }
+         console.log(items)
+        axios.post(`https://backend-ecommerce-adit.herokuapp.com/api/addtocart`,items)
+        .then((data)=>{
+          console.log(data.data)
+          setupcart(data.data)
 
-        this.setState({cartitems: this.state.cartitems.concat(item)});
+        }).catch((err)=>console.log(err));
+        
     }
     deletecartitem(item){
-      var myArray=[];
-     
-     
-      myArray = this.state.cartitems.filter(function( obj ) {
-        return obj.id !== item.id;
-    });
-     
-      this.setState({cartitems:myArray});
-         
+
+        const setupcart=this.setupcart;
+      
+      
+      const items={
+        username:this.state.username,
+        itemId:item.itemId
+      }
+      
+      axios.post(`https://backend-ecommerce-adit.herokuapp.com/api/deletefromcart?deleteall=false`,items)
+      .then((data)=>{
+        if(!data.error)
+        setupcart(data.data)
+      })
+      .catch((err)=>console.log(err))
+
     }
 
     clearcart(){
-        this.setState({cartitems:[]});
+        
+        const setupcart=this.setupcart;
+      
+          axios.post(`https://backend-ecommerce-adit.herokuapp.com/api/deletefromcart?deleteall=true`,{username:this.state.username})
+          .then((data)=>{
+            if(!data.error)
+            setupcart(data.data)
+          })
+          .catch((err)=>console.log(err))
     }
     render(){
 
         const Homepage=()=>{
             return(
-                <Home  cloth={this.props.clothes.filter((cloth)=>cloth.featured)[0]} 
-                furniture={this.props.furniture.filter((furniture)=>furniture.featured)[0]}
-                grocery={this.props.grocery.filter((grocery)=>grocery.featured)[0]}
-                electronic={this.props.electronics.filter((electro)=>electro.featured)[0]}
+                <Home 
+                 cloth={this.props.clothes.filter((cloth)=>cloth.featured)} 
+                furniture={this.props.furniture.filter((furniture)=>furniture.featured)}
+                grocery={this.props.grocery.filter((grocery)=>grocery.featured)}
+                electronic={this.props.electronics.filter((electro)=>electro.featured)}
                 />
             );
         }
@@ -129,6 +179,7 @@ class Main extends Component{
 
             return(
                 <SelectedItem 
+                username={this.username}
                 item={this.props.allitems.filter((item)=>item.id===parseInt(match.params.itemId,10))[0]} 
                  appendcartitems={this.appendcartitems}
                 />
@@ -199,7 +250,6 @@ class Main extends Component{
             setidentity={this.setidentity}
             itemLogined={this.props.allitems.filter((item)=>item.id===102)[0]}
             itemLogout={this.props.allitems.filter((item)=>item.id===103)[0]}
-            
             />
             <Switch>
             
@@ -213,7 +263,7 @@ class Main extends Component{
             <Route path='/payment' component={Pay} />
             <Route exact path='/categories/:itemId' component={SelectedItems} />
             <Route exact path="/contactus" component={ContactPage}/>  
-           <Route exact path="/aboutus" component={AboutPage}/>
+            <Route exact path="/aboutus" component={AboutPage}/>
             <Redirect to="/home"/>
             </Switch>
             
