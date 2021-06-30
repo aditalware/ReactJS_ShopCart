@@ -2,7 +2,7 @@ export const ALLITEMS =
     [
         {
         id: 0,
-        name:'Denim Jeans',
+        rating:5,name:'Denim Jeans',
         image: '/assests/images/bluejeans.jpg',
         category: 'Clothes',
         label:'Hot',
@@ -13,18 +13,18 @@ export const ALLITEMS =
         },
         {
         id: 1,
-        name:'Formal Shirt',
+        rating:5,name:'Formal Shirt',
         image: '/assests/images/formalshirt.jpg',
         category: 'Clothes',
         label:'new',
         price:500,
-        featured: false,
+        featured: true,
         chosen:false,
         description:'Looks formal and professional'
         },
         {
         id: 2,
-        name:'T-Shirt',
+        rating:5,name:'T-Shirt',
         image: '/assests/images/tshirt.png',
         category: 'Clothes',
         label:'new',
@@ -35,7 +35,7 @@ export const ALLITEMS =
         },
         {
         id: 3,
-        name:'Formal Pants',
+        rating:5,name:'Formal Pants',
         image: '/assests/images/pants.jpg',
         category: 'Clothes',
         label:'hot',
@@ -46,7 +46,7 @@ export const ALLITEMS =
         },
         {
             id: 10,
-            name:'Realme 5 Pro',
+            rating:5,name:'Realme 5 Pro',
             image: '/assests/images/realme.jpg',
             category: 'Electronics',
             label:'Hot',
@@ -57,18 +57,18 @@ export const ALLITEMS =
             },
             {
             id: 11,
-            name:'Sony Bravia',
+            rating:5,name:'Sony Bravia',
             image: '/assests/images/sony.jpg',
             category: 'Electronics',
             label:'new',
             price:500000,
-            featured: false,
+            featured: true,
             chosen:true,
             description:'Essence of the nature!'
             },
             {
             id: 12,
-            name:'French Fridge',
+            rating:5,name:'French Fridge',
             image: '/assests/images/fridge.png',
             category: 'Electronics',
             label:'new',
@@ -79,18 +79,18 @@ export const ALLITEMS =
             },
             {
             id: 13,
-            name:'Panasonic Air Conditioner',
+            rating:5,name:'Panasonic Air Conditioner',
             image: '/assests/images/aircond.jpg',
             category: 'Electronics',
             label:'cold',
             price:35000,
-            featured: false,
+            featured: true,
             chosen:false,
             description:'Feel the cool breeze within!'
             },
             {
                 id: 20,
-                name:'Cusion Sofa Set',
+                rating:5,name:'Cusion Sofa Set',
                 image: '/assests/images/sofa.jpg',
                 category: 'Furnitures',
                 label:'Hot',
@@ -101,7 +101,7 @@ export const ALLITEMS =
                 },
                 {
                 id: 21,
-                name:'Table',
+                rating:5,name:'Table',
                 image: '/assests/images/table.jpg',
                 category: 'Furnitures',
                 label:'new',
@@ -112,18 +112,18 @@ export const ALLITEMS =
                 },
                 {
                 id: 22,
-                name:'Dining Table',
+                rating:5,name:'Dining Table',
                 image: '/assests/images/dining.jpg',
                 category: 'Furnitures',
                 label:'new',
                 price:555,
-                featured: false,
+                featured: true,
                 chosen:true,
                 description:'For a good and healthy dinner'
                 },
                 {
                 id: 23,
-                name:'Elegant Cupboard',
+                rating:5,name:'Elegant Cupboard',
                 image: '/assests/images/cupboard.jpeg',
                 category: 'Furnitures',
                 label:'hot',
@@ -134,7 +134,7 @@ export const ALLITEMS =
                 },
                 {
                     id: 30,
-                    name:'Tropicana Orange Juice',
+                    rating:5,name:'Tropicana Orange Juice',
                     image: '/assests/images/orange.jpeg',
                     category: 'liquids',
                     label:'Grocery',
@@ -145,7 +145,7 @@ export const ALLITEMS =
                     },
                     {
                     id: 31,
-                    name:'Tomato Ketchup',
+                    rating:5,name:'Tomato Ketchup',
                     image: '/assests/images/sauce.jpg',
                     category: 'Grocery',
                     label:'Tangy',
@@ -156,18 +156,18 @@ export const ALLITEMS =
                     },
                     {
                     id: 32,
-                    name:'Milk',
+                    rating:5,name:'Milk',
                     image: '/assests/images/milk.jpg',
                     category: 'Grocery',
                     label:'fresh',
                     price:30,
-                    featured: false,
+                    featured: true,
                     chosen:false,
                     description:'Protein and vitamins integrated!'
                     },
                     {
                     id: 33,
-                    name:'Atta Shakti',
+                    rating:5,name:'Atta Shakti',
                     image: '/assests/images/aata.jpg',
                     category: 'Grocery',
                     label:'new',
@@ -178,7 +178,7 @@ export const ALLITEMS =
                     },
                     {
                         id: 100,
-                        name:'SuccessPayment',
+                        rating:5,name:'SuccessPayment',
                         image: '/assests/images/success.png',
                         category: 'Payment',
                         label:'Transaction',
@@ -189,7 +189,7 @@ export const ALLITEMS =
                         },
                         {
                             id: 100,
-                            name:'SuccessPayment',
+                            rating:5,name:'SuccessPayment',
                             image: '/assests/images/success.png',
                             category: 'Payment',
                             label:'Transaction',
@@ -200,7 +200,7 @@ export const ALLITEMS =
                             },
                             {
                                 id: 101,
-                                name:'CartIcon',
+                                rating:5,name:'CartIcon',
                                 image: '/assests/images/shopicon.jpg',
                                 category: 'Cart',
                                 label:'ShopCart',
@@ -211,7 +211,7 @@ export const ALLITEMS =
                                 },
                                 {
                                     id: 102,
-                                    name:'Logined',
+                                    rating:5,name:'Logined',
                                     image: '/assests/images/logined.png',
                                     category: 'Entry',
                                     label:'ShopCart',
@@ -222,7 +222,7 @@ export const ALLITEMS =
                                     },
                                     {
                                         id: 103,
-                                        name:'LogOut',
+                                        rating:5,name:'LogOut',
                                         image: '/assests/images/logout.png',
                                         category: 'Exit',
                                         label:'ShopCart',
@@ -237,7 +237,7 @@ export const ALLITEMS =
 //     [
 //         {
 //         id: 0,
-//         name:'Denim Jeans',
+//         rating:5,name:'Denim Jeans',
 //         image: '/assests/images/bluejeans.jpg',
 //         category: 'Clothes',
 //         label:'Hot',
@@ -248,7 +248,7 @@ export const ALLITEMS =
 //         },
 //         {
 //         id: 1,
-//         name:'Formal Shirt',
+//         rating:5,name:'Formal Shirt',
 //         image: '/assests/images/formalshirt.jpg',
 //         category: 'Clothes',
 //         label:'new',
@@ -259,7 +259,7 @@ export const ALLITEMS =
 //         },
 //         {
 //         id: 2,
-//         name:'T-Shirt',
+//         rating:5,name:'T-Shirt',
 //         image: '/assests/images/tshirt.png',
 //         category: 'Clothes',
 //         label:'new',
@@ -270,7 +270,7 @@ export const ALLITEMS =
 //         },
 //         {
 //         id: 3,
-//         name:'Formal Pants',
+//         rating:5,name:'Formal Pants',
 //         image: '/assests/images/pants.jpg',
 //         category: 'Clothes',
 //         label:'hot',
@@ -281,7 +281,7 @@ export const ALLITEMS =
 //         },
 //         {
 //             id: 10,
-//             name:'Realme 5 Pro',
+//             rating:5,name:'Realme 5 Pro',
 //             image: '/assests/images/realme.jpg',
 //             category: 'Electronics',
 //             label:'Hot',
@@ -292,7 +292,7 @@ export const ALLITEMS =
 //             },
 //             {
 //             id: 11,
-//             name:'Sony Bravia',
+//             rating:5,name:'Sony Bravia',
 //             image: '/assests/images/sony.jpg',
 //             category: 'Electronics',
 //             label:'new',
@@ -303,7 +303,7 @@ export const ALLITEMS =
 //             },
 //             {
 //             id: 12,
-//             name:'French Fridge',
+//             rating:5,name:'French Fridge',
 //             image: '/assests/images/fridge.png',
 //             category: 'Electronics',
 //             label:'new',
@@ -314,7 +314,7 @@ export const ALLITEMS =
 //             },
 //             {
 //             id: 13,
-//             name:'Panasonic Air Conditioner',
+//             rating:5,name:'Panasonic Air Conditioner',
 //             image: '/assests/images/aircond.jpg',
 //             category: 'Electronics',
 //             label:'cold',
@@ -325,7 +325,7 @@ export const ALLITEMS =
 //             },
 //             {
 //                 id: 20,
-//                 name:'Cusion Sofa Set',
+//                 rating:5,name:'Cusion Sofa Set',
 //                 image: '/assests/images/sofa.jpg',
 //                 category: 'Furnitures',
 //                 label:'Hot',
@@ -336,7 +336,7 @@ export const ALLITEMS =
 //                 },
 //                 {
 //                 id: 21,
-//                 name:'Table',
+//                 rating:5,name:'Table',
 //                 image: '/assests/images/table.jpg',
 //                 category: 'Furnitures',
 //                 label:'new',
@@ -347,7 +347,7 @@ export const ALLITEMS =
 //                 },
 //                 {
 //                 id: 22,
-//                 name:'Dining Table',
+//                 rating:5,name:'Dining Table',
 //                 image: '/assests/images/dining.jpg',
 //                 category: 'Furnitures',
 //                 label:'new',
@@ -358,7 +358,7 @@ export const ALLITEMS =
 //                 },
 //                 {
 //                 id: 23,
-//                 name:'Elegant Cupboard',
+//                 rating:5,name:'Elegant Cupboard',
 //                 image: '/assests/images/cupboard.jpeg',
 //                 category: 'Furnitures',
 //                 label:'hot',
@@ -369,7 +369,7 @@ export const ALLITEMS =
 //                 },
 //                 {
 //                     id: 30,
-//                     name:'Tropicana Orange Juice',
+//                     rating:5,name:'Tropicana Orange Juice',
 //                     image: '/assests/images/orange.jpeg',
 //                     category: 'liquids',
 //                     label:'Grocery',
@@ -380,7 +380,7 @@ export const ALLITEMS =
 //                     },
 //                     {
 //                     id: 31,
-//                     name:'Tomato Ketchup',
+//                     rating:5,name:'Tomato Ketchup',
 //                     image: '/assests/images/sauce.jpg',
 //                     category: 'Grocery',
 //                     label:'Tangy',
@@ -391,7 +391,7 @@ export const ALLITEMS =
 //                     },
 //                     {
 //                     id: 32,
-//                     name:'Milk',
+//                     rating:5,name:'Milk',
 //                     image: '/assests/images/milk.jpg',
 //                     category: 'Grocery',
 //                     label:'fresh',
@@ -402,7 +402,7 @@ export const ALLITEMS =
 //                     },
 //                     {
 //                     id: 33,
-//                     name:'Atta Shakti',
+//                     rating:5,name:'Atta Shakti',
 //                     image: '/assests/images/aata.jpg',
 //                     category: 'Grocery',
 //                     label:'new',

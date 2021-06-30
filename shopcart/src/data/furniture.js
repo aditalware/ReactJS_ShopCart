@@ -8,6 +8,8 @@ export const FURNITURE =
         label:'Hot',
         price:201,
         featured: false,
+        rating:5,
+
         chosen:false,
         description:'Feel the smoothness of comfort'                    
         },
@@ -18,7 +20,9 @@ export const FURNITURE =
         category: 'Furnitures',
         label:'new',
         price:322,
-        featured: false,
+        featured: true,
+        rating:5,
+
         chosen:false,
         description:'Office chaos need something sober'
         },
@@ -29,6 +33,8 @@ export const FURNITURE =
         category: 'Furnitures',
         label:'new',
         price:555,
+        rating:5,
+
         featured: false,
         chosen:true,
         description:'For a good and healthy dinner'
@@ -41,6 +47,8 @@ export const FURNITURE =
         label:'hot',
         price:212,
         featured: true,
+        rating:5,
+
         chosen:false,
         description:'To integrate the designing'
         }

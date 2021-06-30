@@ -8,6 +8,8 @@ export const ELECTRONICS =
         label:'Hot',
         price:30000,
         featured: true,
+        rating:5,
+
         chosen:false,
         description:'Light weight shiny Experience!'                    
         },
@@ -18,8 +20,10 @@ export const ELECTRONICS =
         category: 'Electronics',
         label:'new',
         price:500000,
-        featured: false,
+        featured: true,
         chosen:true,
+        rating:5,
+
         description:'Essence of the nature!'
         },
         {
@@ -31,6 +35,8 @@ export const ELECTRONICS =
         price:200000,
         featured: false,
         chosen:false,
+        rating:5,
+
         description:'Cold and Hot exotic fusion!'
         },
         {
@@ -42,6 +48,8 @@ export const ELECTRONICS =
         price:35000,
         featured: false,
         chosen:false,
+        rating:5,
+
         description:'Feel the cool breeze within!'
         }
     ];

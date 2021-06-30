@@ -9,6 +9,7 @@ export const CLOTHES =
         price:300,
         featured: true,
         chosen:false,
+        rating:5,
         description:'Wear the perfect denim jeans'                    
         },
         {
@@ -18,8 +19,10 @@ export const CLOTHES =
         category: 'Clothes',
         label:'new',
         price:500,
-        featured: false,
+        featured: true,
         chosen:false,
+        rating:5,
+
         description:'Looks formal and professional'
         },
         {
@@ -31,6 +34,8 @@ export const CLOTHES =
         price:200,
         featured: false,
         chosen:true,
+        rating:5,
+
         description:'Dashing and attractive tshirts'
         },
         {
@@ -42,6 +47,8 @@ export const CLOTHES =
         price:400,
         featured: false,
         chosen:false,
+        rating:5,
+
         description:'Business oriented classy pants'
         }
     ];
